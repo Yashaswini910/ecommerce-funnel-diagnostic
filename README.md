@@ -1,46 +1,105 @@
-**The E-Commerce Cart Abandonment Funnel Diagnostic**
-An enterprise-grade analytics pipeline and interactive diagnostic application designed to isolate, quantify, and programmatically model structural and behavioral revenue leakage across an e-commerce checkout architecture.
+# 🛒 The E-Commerce Cart Abandonment Funnel Diagnostic
 
-📌 Project Overview & Intent
-Digital commerce architectures experience silent attrition through two core vectors: hidden edge-case software validation errors and downstream price-shocks from misaligned traffic acquisition strategies.
+An enterprise-grade, data analytics portfolio project designed to identify technical and psychological drop-off points in a multi-stage digital checkout funnel. This project demonstrates end-to-end data pipeline capabilities: from synthetic data generation and cloud database querying (SQL) to interactive metric visualization.
 
-This project simulates an enterprise-level data workflow by:
+🔗 **Live Interactive Dashboard:**# 🛒 The E-Commerce Cart Abandonment Funnel Diagnostic
 
-Generating a relational database schema tracking 10,000 baseline web sessions embedded with subtle user friction points.
+An enterprise-grade, data analytics portfolio project designed to identify technical and psychological drop-off points in a multi-stage digital checkout funnel. This project demonstrates end-to-end data pipeline capabilities: from synthetic data generation and cloud database querying (SQL) to interactive metric visualization.
 
-Building an extraction and load infrastructure to transport transactional layers directly into Google Cloud BigQuery.
+🔗 **Live Interactive Dashboard:** # 🛒 The E-Commerce Cart Abandonment Funnel Diagnostic
 
-Writing advanced PostgreSQL/Standard SQL queries leveraging Common Table Expressions (CTEs) and window aggregations to isolate performance drop-offs.
+An enterprise-grade, data analytics portfolio project designed to identify technical and psychological drop-off points in a multi-stage digital checkout funnel. This project demonstrates end-to-end data pipeline capabilities: from synthetic data generation and cloud database querying (SQL) to interactive metric visualization.
 
-Deploying an interactive Streamlit production application to give corporate stakeholders a dynamic interface to evaluate operational recovery metrics in real time.
+🔗 **Live Interactive Dashboard:** https://ecommerce-funnel-diagnostic.streamlit.app/
 
-📐 Data Architecture & Schema
-The underlying transactional structure mimics a production multi-stage checkout funnel tracked across three decoupled, relational tables: 
-   [users]                [web_sessions]             [funnel_events]
- ──┬───────────          ──┬────────────────          ──┬─────────────────
-   │ user_id   (PK) ◄──┐   │ session_id (PK) ◄──┐       │ event_id     (PK)
-   │ region            └───│ user_id    (FK)    └───────│ session_id   (FK)
-   │ device_type           │ traffic_source             │ step_name
-   │ browser               │ campaign                   │ event_timestamp
-                           │ session_start              │ revenue_impact
-The 5-Stage Funnel Definition1. View Item $\rightarrow$ 2. 2. Add to Cart $\rightarrow$ 3. 3. Enter Shipping $\rightarrow$ 4. 4. Enter Payment $\rightarrow$ 5. 5. Purchase Complete🛠️ The Pipeline Workflow1. Ingestion & Synthetic Data GenerationThe synthetic engine (data_generator.py) generates 10,000 distinct session traces via NumPy and Pandas. During generation, two distinct anomaly clusters are programmatically injected into the event stream to replicate real-world tracking errors:The Technical Bug: A simulated JavaScript keyboard initialization error causes mobile Safari users operating strictly within the US-West region to drop out at an aggressive 75% rate explicitly at the Enter Shipping tier.The Marketing Friction Point: High-intent traffic driven via a targeted social acquisition campaign (Facebook-Ads / Retargeting-Promo) experiences an extreme conversion drop at the final Enter Payment gateway due to checkout price shock.
-2. Google Cloud BigQuery Data EngineeringData frames are transported via the secure Cloud Client API layer into a unified BigQuery cluster. By avoiding brittle parser cell magics, the pipeline securely bypasses identifier syntax constraints on hyphenated Google Cloud project handles.
+---
 
-3. Advanced Diagnostic QueriesFunnel performance metrics are calculated inside a nested SQL environment. The query maps step-to-step degradation vectors alongside global absolute conversion limits, segmenting performance dimensions across devices and browser ecosystems simultaneously.📊 Analytical Findings & Business ImpactThe production database query yields the following diagnostic footprint:Dimension CategorySegment ValueS1 → S2 (Cart %)S2 → S3 (Shipping %)S3 → S4 (Payment %)Overall Conversion RateDevice TypeDesktop47.80%72.10%81.40%4.30%Device TypeMobile49.20%41.30%78.20%1.60%BrowserChrome48.10%70.40%82.00%4.40%BrowserSafari48.50%34.10%52.30%1.10%Traffic SourceFacebook-Ads88.40%71.20%9.10%0.80%[Inbound Traffic] ➔ [1. View Item] ➔ [2. Add to Cart] ➔ [3. Enter Shipping] ➔ [4. Enter Payment] ➔ [5. Purchase Complete]
-                                            │                      │
-                                            ▼                      ▼
-                             [Tech Edge-Case: Mobile Safari] [Marketing Anomaly: Ad-Shock]
-                             (75% Drop Anomaly Isolated)      (90.9% Attrition at Payment)
-🛑 Critical Analytical InsightsThe Mobile Safari Failure: While core browser variants execute a smooth $\sim 70\%$ conversion step from Cart to Shipping, the Safari application layer drops drastically to $34.1\%$. This confirms the presence of a technical rendering block on iOS engines.The Paid Traffic Shock: The Facebook Retargeting cohort shows exceptional product engagement ($88.4\%$ Add-to-Cart velocity), but collapses to a final $9.1\%$ progression rate at payment initialization. This points to a severe mismatch between ad-spend promo copy and hidden fulfillment charges applied at checkout.
+## 📊 Project Overview & Financial Impact
+Digital checkout systems lose massive revenue daily due to hidden device bugs and marketing mismatches. This diagnostic framework builds a relational database tracking 10,000 user web sessions to isolate funnel friction nodes. 
 
-📈 Financial Opportunity ModelingThe integrated Python calculation framework isolates localized transaction values to compute the operational revenue opportunity of rolling out engineering fixes.$$\text{Financial Opportunity} = (\text{Lost Users} \times \text{Target Recovery Rate}) \times \text{Average Order Value (AOV)}$$Average Order Value (AOV): $84.72Identified Leaked Volume (US-West Safari Cluster): 684 SessionsTarget Recovery Capture Rate: 25%Immediate Annualized Revenue Upside: +$14,487.12
+### Key Discoveries:
+1. **The Technical Anomaly:** A massive **75% user drop-off pattern at the "Enter Shipping" stage** specifically affecting **Mobile Safari users in the US-West region** (simulating a complex frontend JavaScript keyboard rendering bug).
+2. **The Marketing Anomaly:** Paid traffic from a specific Facebook **Retargeting Campaign** displayed incredibly high "Add to Cart" intent, but suffered an abysmal conversion rate at the final **Payment Stage** (simulating user price shock from hidden costs).
 
-🚀 Execution & Deployment StrategyTo run this pipeline environment locally:
-1. Initialize RequirementsEnsure your Python local virtual container is running with the specified configuration manifests:Bashpip install -r requirements.txt
-2. Process Extraction & Direct Stream UploadsUpdate your Google Cloud project identities inside the operational notebook layer and execute the secure storage run:Pythonfrom google.cloud import bigquery
-client = bigquery.Client(project="your-gcp-project-id")
-3. Launch Local User Dashboard UISpin up the local microservices container engine to view the application layer interface locally at localhost:8501:Bashstreamlit run app.py
-👔 Strategic Executive RecommendationsDeploy Frontend Engineering Hotfix on iOS Form Layouts: Frontend UI/UX developers must optimize viewports within the shipping form fields. The data confirms a layout sizing or script error on iOS Safari clients that blocks text element focus.Implement Price Transparency Models within Ad Funnels: The growth marketing division should adjust advertising copy templates for the Retargeting-Promo campaign cluster. Displaying local sales taxes and shipping minimums early in the journey will eliminate late-stage checkout price shock and stabilize top-of-funnel conversion value.
+**Financial Recovery Potential:** By patching the Mobile Safari technical bug and recovering just **25% of those lost users**, the business stands to recover an estimated **$14,500+ in lost gross revenue** based on the dataset's baseline Average Order Value (AOV).
 
-🔗 Live Interactive LinkExplore the functional logic and toggle dynamic optimization scenarios on the live dashboard: 
-https://ecommerce-funnel-diagnostic.streamlit.app/
+---
+
+## 🛠️ Data Architecture & Tech Stack
+* **Python (Pandas & NumPy):** Used to programmatically synthesize 10,000 messy transactional user records and seed hidden behavioral bugs.
+* **Google Cloud BigQuery (SQL):** Used to execute production-grade Advanced CTEs and window functions to compute step-by-step conversion rates across dimensions.
+* **Streamlit Community Cloud:** Used to build and host the public-facing executive dashboard displaying interactive recovery models.
+
+### Relational Database Schema
+
+---
+
+## 📊 Project Overview & Financial Impact
+Digital checkout systems lose massive revenue daily due to hidden device bugs and marketing mismatches. This diagnostic framework builds a relational database tracking 10,000 user web sessions to isolate funnel friction nodes. 
+
+### Key Discoveries:
+1. **The Technical Anomaly:** A massive **75% user drop-off pattern at the "Enter Shipping" stage** specifically affecting **Mobile Safari users in the US-West region** (simulating a complex frontend JavaScript keyboard rendering bug).
+2. **The Marketing Anomaly:** Paid traffic from a specific Facebook **Retargeting Campaign** displayed incredibly high "Add to Cart" intent, but suffered an abysmal conversion rate at the final **Payment Stage** (simulating user price shock from hidden costs).
+
+**Financial Recovery Potential:** By patching the Mobile Safari technical bug and recovering just **25% of those lost users**, the business stands to recover an estimated **$14,500+ in lost gross revenue** based on the dataset's baseline Average Order Value (AOV).
+
+---
+
+## 🛠️ Data Architecture & Tech Stack
+* **Python (Pandas & NumPy):** Used to programmatically synthesize 10,000 messy transactional user records and seed hidden behavioral bugs.
+* **Google Cloud BigQuery (SQL):** Used to execute production-grade Advanced CTEs and window functions to compute step-by-step conversion rates across dimensions.
+* **Streamlit Community Cloud:** Used to build and host the public-facing executive dashboard displaying interactive recovery models.
+
+### Relational Database Schema
+
+---
+
+## 📊 Project Overview & Financial Impact
+Digital checkout systems lose massive revenue daily due to hidden device bugs and marketing mismatches. This diagnostic framework builds a relational database tracking 10,000 user web sessions to isolate funnel friction nodes. 
+
+### Key Discoveries:
+1. **The Technical Anomaly:** A massive **75% user drop-off pattern at the "Enter Shipping" stage** specifically affecting **Mobile Safari users in the US-West region** (simulating a complex frontend JavaScript keyboard rendering bug).
+2. **The Marketing Anomaly:** Paid traffic from a specific Facebook **Retargeting Campaign** displayed incredibly high "Add to Cart" intent, but suffered an abysmal conversion rate at the final **Payment Stage** (simulating user price shock from hidden costs).
+
+**Financial Recovery Potential:** By patching the Mobile Safari technical bug and recovering just **25% of those lost users**, the business stands to recover an estimated **$14,500+ in lost gross revenue** based on the dataset's baseline Average Order Value (AOV).
+
+---
+
+## 🛠️ Data Architecture & Tech Stack
+* **Python (Pandas & NumPy):** Used to programmatically synthesize 10,000 messy transactional user records and seed hidden behavioral bugs.
+* **Google Cloud BigQuery (SQL):** Used to execute production-grade Advanced CTEs and window functions to compute step-by-step conversion rates across dimensions.
+
+[users] ➔ user_id (PK), region, device_type, browser
+[web_sessions] ➔ session_id (PK), user_id (FK), traffic_source, campaign, session_start
+[funnel_events] ➔ event_id (PK), session_id (FK), step_name, event_timestamp, revenue_impact
+
+---
+
+## 🚀 Step-by-Step Methodology
+
+### 1. Data Ingestion & Seeding
+The data pipeline starts by structuring raw session layers. User device signatures are mapped alongside multi-stage checkout events. The five standard checkout steps tracked include:
+`1. View Item` ➔ `2. Add to Cart` ➔ `3. Enter Shipping` ➔ `4. Enter Payment` ➔ `5. Purchase Complete`
+
+### 2. Behavioral Segmentation
+Advanced SQL queries segment user performance side-by-side across Devices, Browsers, and Marketing Campaigns. This isolates normal funnel degradation from sudden systemic drop-offs.
+
+### 3. Financial Opportunity Modeling
+The data framework programmatically separates traffic volumes by cohort to map exact financial leakage. This creates a clear roadmap for engineers and marketers to prioritize tasks based on dollar value.
+
+---
+
+## 💡 Executive Action Items
+
+* **Fix the US-West Mobile Safari Form Bug:** Engineering teams must urgently audit viewport resizing scripts inside the shipping address form layout. The 75% drop-off pattern confirms that iOS devices are failing to complete inputs when the mobile keyboard initializes.
+* **Optimize Retargeting Ad Cost Transparency:** The marketing team should modify Facebook Retargeting ad copies to explicitly state shipping thresholds or clear baseline fees upfront. This bridges the expectation gap and eliminates the price shock dropping users at the payment gateway.
+
+---
+
+## 📂 Repository Structure
+* `app.py`: The core Streamlit application script containing code for visualizations and interactive slider calculations.
+* `funnel_master_data.csv`: The processed master transactional data file generated for analysis.
+* `requirements.txt`: The system dependencies required to deploy the public cloud container.
+* **Streamlit Community Cloud:** Used to build and host the public-facing executive dashboard displaying interactive recovery models.
+
+### Relational Database Schema
