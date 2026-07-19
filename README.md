@@ -62,7 +62,9 @@ Digital checkout systems lose massive revenue daily due to hidden device bugs an
 * **Google Cloud BigQuery (SQL):** Used to execute production-grade Advanced CTEs and window functions to compute step-by-step conversion rates across dimensions.
 
 [users] ➔ user_id (PK), region, device_type, browser
+
 [web_sessions] ➔ session_id (PK), user_id (FK), traffic_source, campaign, session_start
+
 [funnel_events] ➔ event_id (PK), session_id (FK), step_name, event_timestamp, revenue_impact
 
 ---
