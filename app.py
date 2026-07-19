@@ -6,6 +6,17 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 st.set_page_config(page_title="E-Commerce Funnel Diagnostic", layout="wide")
+# Safe data load caching layer
+@st.cache_data
+def load_funnel_data():
+    df = pd.read_csv("funnel_master_data.csv")
+    return df
+
+try:
+    df_master = load_funnel_data()
+except Exception as e:
+    st.error(f"Data engine link failed: {e}")
+    df_master = pd.DataFrame() # Fallback container
 
 st.title("🛒 E-Commerce Cart Abandonment Funnel Diagnostic")
 st.markdown("### *Enterprise-Grade Pipeline Operations & Leakage Diagnostics*")
