@@ -2,14 +2,6 @@
 
 An enterprise-grade, data analytics portfolio project designed to identify technical and psychological drop-off points in a multi-stage digital checkout funnel. This project demonstrates end-to-end data pipeline capabilities: from synthetic data generation and cloud database querying (SQL) to interactive metric visualization.
 
-🔗 **Live Interactive Dashboard:**# 🛒 The E-Commerce Cart Abandonment Funnel Diagnostic
-
-An enterprise-grade, data analytics portfolio project designed to identify technical and psychological drop-off points in a multi-stage digital checkout funnel. This project demonstrates end-to-end data pipeline capabilities: from synthetic data generation and cloud database querying (SQL) to interactive metric visualization.
-
-🔗 **Live Interactive Dashboard:** # 🛒 The E-Commerce Cart Abandonment Funnel Diagnostic
-
-An enterprise-grade, data analytics portfolio project designed to identify technical and psychological drop-off points in a multi-stage digital checkout funnel. This project demonstrates end-to-end data pipeline capabilities: from synthetic data generation and cloud database querying (SQL) to interactive metric visualization.
-
 🔗 **Live Interactive Dashboard:** https://ecommerce-funnel-diagnostic.streamlit.app/
 
 ---
@@ -102,4 +94,3 @@ The data framework programmatically separates traffic volumes by cohort to map e
 * `requirements.txt`: The system dependencies required to deploy the public cloud container.
 * **Streamlit Community Cloud:** Used to build and host the public-facing executive dashboard displaying interactive recovery models.
 
-### Relational Database Schema
